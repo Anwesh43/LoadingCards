@@ -1,6 +1,7 @@
 package com.anwesome.ui.loadingcards;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
@@ -20,7 +21,9 @@ public class LoadingCardList {
     }
     public void show() {
         if(!isShown) {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             activity.setContentView(scrollView);
+            loadingCardLayout.startCardLoader();
             isShown = true;
         }
     }

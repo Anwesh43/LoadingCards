@@ -1,5 +1,6 @@
 package com.anwesome.ui.loadingcards;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
 import android.hardware.display.DisplayManager;
@@ -12,9 +13,14 @@ import android.view.ViewGroup;
  */
 public class LoadingCardLayout extends ViewGroup{
     private int w,h;
+    private CardLoader cardLoader;
+    public void startCardLoader() {
+        cardLoader.start();;
+    }
     public LoadingCardLayout(Context context) {
         super(context);
         initDimension(context);
+        cardLoader = new CardLoader((Activity) context);
     }
     public void initDimension(Context context) {
         DisplayManager displayManager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
@@ -31,6 +37,7 @@ public class LoadingCardLayout extends ViewGroup{
         loadingCardView.setCardProcessor(cardProcessor);
         addView(loadingCardView,new LayoutParams(w,w));
         requestLayout();
+        cardLoader.addView(loadingCardView);
     }
     public void onMeasure(int wspec,int hspec) {
         int hNew = h/60;
