@@ -17,7 +17,7 @@ public class LoadingCardView extends View {
     private LoadingCard loadingCard;
     private Paint paint;
     private int w,h,time = 0;
-    public LoadingCardView(Context context, Bitmap bitmap) {
+    public LoadingCardView(Context context) {
         super(context);
     }
     public void onDraw(Canvas canvas) {
