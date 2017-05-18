@@ -14,13 +14,21 @@ import android.view.View;
  */
 public class LoadingCardView extends View {
     private boolean isLoading = true;
-    private LoadingCard loadingCard = new LoadingCard();
+    private LoadingCard loadingCard;
     private Paint paint;
+    private int w,h,time = 0;
     public LoadingCardView(Context context, Bitmap bitmap) {
         super(context);
     }
     public void onDraw(Canvas canvas) {
+        if(time == 0) {
+            w = canvas.getWidth();
+            h = canvas.getHeight();
+            loadingCard = new LoadingCard();
+        }
         if(isLoading) {
+            loadingCard.draw(canvas);
+            loadingCard.update();
             try {
                 Thread.sleep(50);
                 invalidate();
@@ -32,6 +40,7 @@ public class LoadingCardView extends View {
         else {
 
         }
+        time++;
     }
     public void setLoading(boolean loading) {
         isLoading = loading;
@@ -41,10 +50,16 @@ public class LoadingCardView extends View {
     }
     private class LoadingCard {
         private float factor = 0;
+        private LoadingBlock imageBlock,titleBlock,subTitleBlock;
         public LoadingCard() {
-            
+            imageBlock = new LoadingBlock(w/10,h/20,4*w/5,3*h/5);
+            titleBlock = new LoadingBlock(w/10,7*h/10,w/2,h/10);
+            subTitleBlock = new LoadingBlock(w/10,17*h/20,w/3,h/10);
         }
         public void draw(Canvas canvas) {
+            imageBlock.draw(canvas);
+            titleBlock.draw(canvas);
+            subTitleBlock.draw(canvas);
         }
         public void update() {
             factor+=0.1f;
@@ -70,7 +85,9 @@ public class LoadingCardView extends View {
             paint.setColor(Color.parseColor("#757575"));
             canvas.drawRect(new RectF(mx,0,mx+w/10,h),paint);
             canvas.restore();
-
+        }
+        public void update(float factor) {
+            mx = w*factor;
         }
     }
 }
