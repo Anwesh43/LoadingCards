@@ -139,9 +139,10 @@ public class LoadingCardView extends View {
                 char ch = text.charAt(i);
                 msg = msg+ch;
                 if(paint.measureText(msg) > w) {
-                    msg = msg+"..."
+                    msg = msg+"...";
                 }
             }
+            return msg;
         }
     }
 }
