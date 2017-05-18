@@ -26,8 +26,9 @@ public class LoadingCardLayout extends ViewGroup{
             h = size.y;
         }
     }
-    public void addLoadingCard() {
+    public void addLoadingCard(CardProcessor cardProcessor) {
         LoadingCardView loadingCardView = new LoadingCardView(getContext());
+        loadingCardView.setCardProcessor(cardProcessor);
         addView(loadingCardView,new LayoutParams(w,w));
         requestLayout();
     }

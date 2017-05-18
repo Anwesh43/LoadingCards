@@ -20,6 +20,13 @@ public class LoadingCardView extends View {
     private LoadingCard loadingCard;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int w,h,time = 0;
+    private CardProcessor cardProcessor;
+    public void setCardProcessor(CardProcessor cardProcessor) {
+        this.cardProcessor = cardProcessor;
+    }
+    public CardProcessor getCardProcessor() {
+        return cardProcessor;
+    }
     public LoadingCardView(Context context) {
         super(context);
     }

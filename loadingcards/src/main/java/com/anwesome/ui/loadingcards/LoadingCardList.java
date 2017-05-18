@@ -24,9 +24,9 @@ public class LoadingCardList {
             isShown = true;
         }
     }
-    public void addLoadingCard() {
+    public void addLoadingCard(CardProcessor cardProcessor) {
         if(!isShown) {
-            loadingCardLayout.addLoadingCard();
+            loadingCardLayout.addLoadingCard(cardProcessor);
         }
     }
 }
