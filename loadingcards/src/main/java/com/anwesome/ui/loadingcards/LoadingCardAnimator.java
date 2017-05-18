@@ -1,9 +1,7 @@
 package com.anwesome.ui.loadingcards;
 
 import android.app.Activity;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by anweshmishra on 18/05/17.
@@ -11,7 +9,7 @@ import java.util.List;
 public class LoadingCardAnimator {
     private Activity activity;
     private boolean isRunning = true;
-    private List<LoadingCardView> loadingCardViews = new ArrayList<>();
+    private ConcurrentLinkedQueue<LoadingCardView> loadingCardViews = new ConcurrentLinkedQueue<>();
     public LoadingCardAnimator(Activity activity) {
         this.activity = activity;
     }

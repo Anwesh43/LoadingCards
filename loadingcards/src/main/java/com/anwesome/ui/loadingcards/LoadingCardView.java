@@ -36,6 +36,7 @@ public class LoadingCardView extends View {
     }
     public void setCardProperties(Bitmap bitmap,String title,String subTitle) {
         card.setProperties(bitmap,title,subTitle);
+        postInvalidate();
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
@@ -47,13 +48,6 @@ public class LoadingCardView extends View {
         if(isLoading) {
             loadingCard.draw(canvas);
             loadingCard.update();
-            try {
-                Thread.sleep(10);
-                invalidate();
-            }
-            catch(Exception ex) {
-
-            }
         }
         else {
             paint.setColor(Color.BLACK);
