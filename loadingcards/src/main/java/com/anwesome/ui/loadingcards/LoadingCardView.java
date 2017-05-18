@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,7 +16,7 @@ import android.view.View;
 public class LoadingCardView extends View {
     private boolean isLoading = true;
     private LoadingCard loadingCard;
-    private Paint paint;
+    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int w,h,time = 0;
     public LoadingCardView(Context context) {
         super(context);
@@ -26,11 +27,12 @@ public class LoadingCardView extends View {
             h = canvas.getHeight();
             loadingCard = new LoadingCard();
         }
+        canvas.drawColor(Color.WHITE);
         if(isLoading) {
             loadingCard.draw(canvas);
             loadingCard.update();
             try {
-                Thread.sleep(50);
+                Thread.sleep(75);
                 invalidate();
             }
             catch(Exception ex) {
@@ -63,9 +65,12 @@ public class LoadingCardView extends View {
         }
         public void update() {
             factor+=0.1f;
-            if(factor>1) {
+            if(factor>1.4f) {
                 factor = 0;
             }
+            imageBlock.update(factor);
+            titleBlock.update(factor);
+            subTitleBlock.update(factor);
         }
     }
     private class LoadingBlock {
@@ -78,12 +83,15 @@ public class LoadingCardView extends View {
             this.mx = 0;
         }
         public void draw(Canvas canvas) {
-            paint.setColor(Color.parseColor("#E0E0E0"));
+            paint.setColor(Color.parseColor("#99E0E0E0"));
             canvas.save();
             canvas.translate(x,y);
+            Path path = new Path();
+            path.addRect(new RectF(0,0,w*1.1f,h), Path.Direction.CCW);
+            canvas.clipPath(path);
             canvas.drawRect(new RectF(0,0,w,h),paint);
-            paint.setColor(Color.parseColor("#757575"));
-            canvas.drawRect(new RectF(mx,0,mx+w/10,h),paint);
+            paint.setColor(Color.parseColor("#33757575"));
+            canvas.drawRect(new RectF(mx,0,mx+w/50,h),paint);
             canvas.restore();
         }
         public void update(float factor) {
