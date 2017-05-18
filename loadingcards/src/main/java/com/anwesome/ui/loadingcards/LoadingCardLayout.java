@@ -38,7 +38,7 @@ public class LoadingCardLayout extends ViewGroup{
             measureChild(child,wspec,hspec);
             hNew+=h/40+child.getMeasuredHeight();
         }
-        setMeasuredDimension(w,Math.max(hNew,h+h/10));
+        setMeasuredDimension(w,Math.max(hNew+h/5,h));
     }
     public void onLayout(boolean reloaded,int a,int b,int w,int h) {
         int y = h/60;
