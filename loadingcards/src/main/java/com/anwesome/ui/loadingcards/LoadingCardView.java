@@ -25,6 +25,9 @@ public class LoadingCardView extends View {
     public void setCardProcessor(CardProcessor cardProcessor) {
         this.cardProcessor = cardProcessor;
     }
+    public boolean isLoaded() {
+        return !isLoading;
+    }
     public CardProcessor getCardProcessor() {
         return cardProcessor;
     }
