@@ -87,11 +87,11 @@ public class LoadingCardView extends View {
             canvas.save();
             canvas.translate(x,y);
             Path path = new Path();
-            path.addRect(new RectF(0,0,w*1.1f,h), Path.Direction.CCW);
+            path.addRect(new RectF(0,0,w*1.05f,h), Path.Direction.CCW);
             canvas.clipPath(path);
             canvas.drawRect(new RectF(0,0,w,h),paint);
-            paint.setColor(Color.parseColor("#33757575"));
-            canvas.drawRect(new RectF(mx,0,mx+w/50,h),paint);
+            paint.setColor(Color.parseColor("#11000000"));
+            canvas.drawRect(new RectF(mx,0,mx+w/4,h),paint);
             canvas.restore();
         }
         public void update(float factor) {
