@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
@@ -72,6 +74,18 @@ public class LoadingCardView extends View {
             titleBlock.update(factor);
             subTitleBlock.update(factor);
         }
+        public PointF getBitmapSize() {
+            return new PointF(imageBlock.w,imageBlock.h);
+        }
+        public PointF getBitmapXY() {
+            return new PointF(imageBlock.x,imageBlock.y);
+        }
+        public PointF getTitleXY() {
+            return new PointF(titleBlock.x,titleBlock.y);
+        }
+        public PointF getSubtitleXY() {
+            return new PointF(subTitleBlock.x,subTitleBlock.y);
+        }
     }
     private class LoadingBlock {
         private float x,y,w,h,mx = 0;
@@ -96,6 +110,38 @@ public class LoadingCardView extends View {
         }
         public void update(float factor) {
             mx = w*factor;
+        }
+    }
+    private class Card {
+        private Bitmap bitmap;
+        private String title,subtitle;
+        public void setProperties(Bitmap bitmap,String title,String subTitle) {
+            this.bitmap = bitmap;
+            this.title = title;
+            this.subtitle = subTitle;
+            PointF bitmapSize = loadingCard.getBitmapSize();
+            bitmap = Bitmap.createScaledBitmap(bitmap,(int)bitmapSize.x,(int)bitmapSize.y,true);
+            isLoading = false;
+        }
+        public void drawCanvas(Canvas canvas) {
+            PointF bitmapPosition = loadingCard.getBitmapSize();
+            canvas.drawBitmap(bitmap,bitmapPosition.x,bitmapPosition.y,paint);
+            paint.setTextSize(h/10);
+            PointF titlePosition = loadingCard.getTitleXY();
+            canvas.drawText(trimText(title,w/2),titlePosition.x,titlePosition.y,paint);
+            paint.setTextSize(h/20);
+            PointF subTitlePosition = loadingCard.getTitleXY();
+            canvas.drawText(trimText(subtitle,w/4),subTitlePosition.x,subTitlePosition.y,paint);
+        }
+        private String trimText(String text,float w) {
+            String msg = "";
+            for(int i=0;i<text.length();i++) {
+                char ch = text.charAt(i);
+                msg = msg+ch;
+                if(paint.measureText(msg) > w) {
+                    msg = msg+"..."
+                }
+            }
         }
     }
 }
