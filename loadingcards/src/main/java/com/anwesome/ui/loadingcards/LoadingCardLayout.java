@@ -14,6 +14,7 @@ public class LoadingCardLayout extends ViewGroup{
     private int w,h;
     public LoadingCardLayout(Context context) {
         super(context);
+        initDimension(context);
     }
     public void initDimension(Context context) {
         DisplayManager displayManager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
