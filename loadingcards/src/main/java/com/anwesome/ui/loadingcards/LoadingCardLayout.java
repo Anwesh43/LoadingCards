@@ -32,20 +32,20 @@ public class LoadingCardLayout extends ViewGroup{
         requestLayout();
     }
     public void onMeasure(int wspec,int hspec) {
-        int hNew = h/10;
+        int hNew = h/60;
         for(int i=0;i<getChildCount();i++) {
             View child = getChildAt(i);
             measureChild(child,wspec,hspec);
-            hNew+=h/20+child.getMeasuredHeight();
+            hNew+=h/40+child.getMeasuredHeight();
         }
-        setMeasuredDimension(w,Math.max(hNew,h));
+        setMeasuredDimension(w,Math.max(hNew,h+h/10));
     }
     public void onLayout(boolean reloaded,int a,int b,int w,int h) {
-        int y = h/10;
+        int y = h/60;
         for(int i=0;i<getChildCount();i++){
             View child = getChildAt(i);
             child.layout(0,y,child.getMeasuredWidth(),y+child.getMeasuredHeight());
-            y+=child.getMeasuredHeight()+h/20;
+            y+=child.getMeasuredHeight()+h/40;
         }
     }
 }

@@ -25,6 +25,8 @@ public class LoadingCardList {
         }
     }
     public void addLoadingCard() {
-        loadingCardLayout.addLoadingCard();
+        if(!isShown) {
+            loadingCardLayout.addLoadingCard();
+        }
     }
 }

@@ -34,7 +34,7 @@ public class LoadingCardView extends View {
             loadingCard.draw(canvas);
             loadingCard.update();
             try {
-                Thread.sleep(75);
+                Thread.sleep(5);
                 invalidate();
             }
             catch(Exception ex) {
