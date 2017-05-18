@@ -21,6 +21,7 @@ public class LoadingCardView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int w,h,time = 0;
     private CardProcessor cardProcessor;
+    private Card card = new Card();
     public void setCardProcessor(CardProcessor cardProcessor) {
         this.cardProcessor = cardProcessor;
     }
@@ -29,6 +30,9 @@ public class LoadingCardView extends View {
     }
     public LoadingCardView(Context context) {
         super(context);
+    }
+    public void setCardProperties(Bitmap bitmap,String title,String subTitle) {
+        card.setProperties(bitmap,title,subTitle);
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
