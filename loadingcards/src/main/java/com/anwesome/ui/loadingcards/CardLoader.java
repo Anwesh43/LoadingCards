@@ -30,7 +30,7 @@ public class CardLoader {
                 if(cardProcessor!=null) {
                     final Bitmap bitmap = cardProcessor.fetchBitmap();
                     final String title = cardProcessor.fetchTitle();
-                    final String subtitle = cardProcessor.fetchTitle();
+                    final String subtitle = cardProcessor.fetchSubTitle();
                     if(bitmap!=null && title!=null && subtitle!=null) {
                         activity.runOnUiThread(new Runnable() {
                             @Override

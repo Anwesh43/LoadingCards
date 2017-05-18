@@ -53,7 +53,8 @@ public class LoadingCardView extends View {
             }
         }
         else {
-
+            paint.setColor(Color.BLACK);
+            card.draw(canvas);
         }
         time++;
     }
@@ -134,14 +135,14 @@ public class LoadingCardView extends View {
             bitmap = Bitmap.createScaledBitmap(bitmap,(int)bitmapSize.x,(int)bitmapSize.y,true);
             isLoading = false;
         }
-        public void drawCanvas(Canvas canvas) {
-            PointF bitmapPosition = loadingCard.getBitmapSize();
+        public void draw(Canvas canvas) {
+            PointF bitmapPosition = loadingCard.getBitmapXY();
             canvas.drawBitmap(bitmap,bitmapPosition.x,bitmapPosition.y,paint);
             paint.setTextSize(h/10);
             PointF titlePosition = loadingCard.getTitleXY();
             canvas.drawText(trimText(title,w/2),titlePosition.x,titlePosition.y,paint);
             paint.setTextSize(h/20);
-            PointF subTitlePosition = loadingCard.getTitleXY();
+            PointF subTitlePosition = loadingCard.getSubtitleXY();
             canvas.drawText(trimText(subtitle,w/4),subTitlePosition.x,subTitlePosition.y,paint);
         }
         private String trimText(String text,float w) {
